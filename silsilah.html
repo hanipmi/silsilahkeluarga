@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Silsilah Keluarga</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    .tree {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    .level, .anak-anak {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .anggota-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 10px;
+    }
+    .anggota {
+      text-align: center;
+    }
+    .foto-kotak {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 5px;
+    }
+    .foto-kotak img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+    }
+    .toggle-btn {
+      margin-top: 5px;
+      padding: 5px 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌹 Hj. Maisaroh & Sakim Effendy</h1>
+  <div class="tree">
+    <div class="level">
+      <div class="anggota-container">
+        <div class="foto-kotak">
+          <img src="image/nenek.jpg" alt="Nenek">
+          <img src="image/kakek.jpg" alt="Kakek">
+        </div>
+        <div class="anggota">
+          <h3>Hj. Maisaroh & Sakim Effendy</h3>
+          <p>Umur: <span id="umur-nenek"></span> & <span id="umur-kakek"></span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="level">
+      <!-- Anak 1 sampai 6 -->
+      <!-- Kontainer anak-anak akan dimuat oleh JavaScript -->
+      <div id="anak-container" class="level"></div>
+    </div>
+  </div>
+
+  <script>
+    const tahunSekarang = new Date().getFullYear();
+
+    const tahunLahir = {
+      "umur-nenek": 1950,
+      "umur-kakek": 1945,
+      "umur-anak1": 1970,
+      "umur-pasangan1": 1972
+    };
+
+    for (const id in tahunLahir) {
+      const umur = tahunSekarang - tahunLahir[id];
+      document.getElementById(id) && (document.getElementById(id).textContent = umur + ' tahun');
+    }
+
+    function toggleKeturunan(id) {
+      const el = document.getElementById(id);
+      el.classList.toggle('hidden');
+    }
+
+    // Tambah data dinamis anak 1-6 dan keturunan
+    const anakData = [
+      {
+        nama: 'Sari Muftiyati & H.Mokhamad Irkham',
+        id: 'anak1',
+        umur: [1970, 1972],
+        fotos: [
+            "image/umi.jpg",
+            "image/abi.jpg",
+          ],
+        keturunan: [
+          { nama: 'Hanif & Hastri Pindha Yunnisa', umur: [1999, 2001], fotos: [
+            "image/nip.jpg",
+            "image/hastri.jpg",
+          ], keturunan: [ { nama: 'Hasan Zhafi Irham', umur: [2022], fotos: ["image/hasan.jpg"] } ] },
+          { nama: 'Hanifah & Syamil Fakhruddin', umur: [2001, 2003], fotos: [
+            "image/ifa.jpg",
+            "image/syamil.jpg",
+          ], keturunan: [ { nama: 'Raffasya Tanvir Mauza', umur: [2023], fotos: ["image/rafa.jpg"] }, { nama: 'Gaza Shafiyyu Ruhy', umur: [2024], fotos: ["image/gaza.jpg"] } ] },
+          { nama: 'Hunaifah & Dhestahendra Citra S', umur: [2003, 2004], fotos: [
+            "image/huna.jpg",
+            "image/desta.jpg",
+          ] },
+          { nama: 'Ahnaf', umur: [2006], fotos: ["image/ahnaf.jpg"] },
+          { nama: 'Hunaif', umur: [2008], fotos: ["image/hunaif.jpg"] }
+        ]
+      },
+      {
+        nama: 'Zainal Abidin & Tri Handayaningsih',
+        id: 'anak2',
+        umur: [1973, 1975],
+        fotos: [
+            "image/zainal.jpg",
+            "image/ning.jpg",
+          ],
+        keturunan: [
+          { nama: 'Zaidan Abidin', umur: [2000], fotos: ["image/zidan.jpg"] },
+          { nama: 'Zaki Abidin', umur: [2002], fotos: ["image/zaki.jpg"] }
+        ]
+      },
+      {
+        nama: 'Dewi Khofifah & Muhammad Nasir',
+        id: 'anak3',
+        umur: [1975, 1977],
+        fotos: [
+            "image/dewi.jpg",
+            "image/nasir.jpg",
+          ],
+        keturunan: [
+          { nama: 'Achmad Rifat Derajat', umur: [2000], fotos: ["image/rifat.jpg"] },
+          { nama: 'Ilyas Effendi', umur: [2002], fotos: ["image/ilyas.jpg"] },
+          { nama: 'Sadam Sabil', umur: [2004], fotos: ["image/sadam.jpg"] }
+        ]
+      },
+      {
+        nama: 'Siti Fazriyani & Dede Bahtiar',
+        id: 'anak4',
+        umur: [1978, 1980],
+        fotos: [
+            "image/riya.jpg",
+            "image/tiar.jpg",
+          ],
+        keturunan: [
+          { nama: 'Jundi Al Aziz', umur: [2001], fotos: ["image/aziz.jpg"] },
+          { nama: 'Azizah Fidinika', umur: [2003], fotos: ["image/azizah.jpg"] },
+          { nama: 'Habib Azizul Hakim', umur: [2005], fotos: ["image/habib.jpg"] },
+          { nama: 'Hajid Azizi Robbani', umur: [2007], fotos: ["image/hajid.jpg"] }
+        ]
+      },
+      {
+        nama: 'Huda Bihayati & Ardiansyah',
+        id: 'anak5',
+        umur: [1981, 1983],
+        fotos: [
+            "image/huda.jpg",
+            "image/adi.jpg",
+          ],
+        keturunan: [
+          { nama: 'Hafizhuddin Azam', umur: [2006], fotos: ["image/hafiz.jpg"] },
+          { nama: 'Khansa Adelia Naifah', umur: [2008], fotos: ["image/khanza.jpg"] }
+        ]
+      },
+      {
+        nama: 'Salman AlFarisi & Siti Syarifah Ahyani',
+        id: 'anak6',
+        umur: [1984, 1986],
+        fotos: [
+            "image/ais.jpg",
+            "image/ipeh.jpg",
+          ],
+        keturunan: [
+          { nama: 'Sabrina Aisha', umur: [2009], fotos: ["image/sabrina.jpg"] },
+          { nama: 'Shafira Almira', umur: [2011], fotos: ["image/fira.jpg"] },
+          { nama: 'Shazia Alhumaira', umur: [2013], fotos: ["image/saziah.jpg"] }
+        ]
+      }
+    ];
+
+    const anakContainer = document.getElementById("anak-container");
+
+    anakData.forEach((anak, index) => {
+      const anggotaDiv = document.createElement("div");
+      anggotaDiv.className = "anggota-container";
+      anggotaDiv.innerHTML = `
+        <div class="foto-kotak">
+          ${anak.fotos
+              .map((url) => `<img src="${url}">`)
+              .join("")}
+        </div>
+        <div class="anggota">
+          <h3>${anak.nama}</h3>
+          <p>Umur: ${anak.umur.map(umur => tahunSekarang - umur + ' tahun').join(' & ')}</p>
+        </div>
+        ${anak.keturunan ? `<button class="toggle-btn" onclick="toggleKeturunan('keturunan-${anak.id}')">Tampilkan Keturunan</button>` : ''}
+        <div id="keturunan-${anak.id}" class="anak-anak hidden">
+          ${anak.keturunan ? anak.keturunan.map((c, i) => `
+            <div class="anggota-container">
+              <div class="foto-kotak">
+                ${(c.fotos || [])
+                    .map((url) => `<img src="${url}" alt="${c.nama}">`)
+                    .join("")}
+              </div>
+              <div class="anggota">
+                <h4>${c.nama}</h4>
+                <p>Umur: ${c.umur.map(u => tahunSekarang - u + ' tahun').join(' & ')}</p>
+                ${c.keturunan ? `<button class=\"toggle-btn\" onclick=\"toggleKeturunan('keturunan-${anak.id}-${i+1}')\">Tampilkan Keturunan</button>` : ''}
+                ${c.keturunan ? `<div id=\"keturunan-${anak.id}-${i+1}\" class=\"anak-anak hidden\">${c.keturunan.map(gc => `
+                  <div class=\"anggota-container\">
+                    <div class=\"foto-kotak\">${(gc.fotos || [])
+                              .map(
+                                (url) => `<img src="${url}" alt="${gc.nama}">`
+                              )
+                              .join("")}</div>
+                    <div class=\"anggota\">
+                      <h5>${gc.nama}</h5>
+                      <p>Umur: ${gc.umur.map(u => tahunSekarang - u + ' tahun').join('')}</p>
+                    </div>
+                  </div>`).join('')}</div>` : ''}
+              </div>
+            </div>`).join('') : ''}
+        </div>
+      `;
+      anakContainer.appendChild(anggotaDiv);
+    });
+  </script>
+</body>
+</html>
