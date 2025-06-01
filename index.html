@@ -60,9 +60,77 @@
     .hidden {
       display: none;
     }
+    .play-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .play-button:hover {
+      background-color: #45a049;
+    }
+
+    .play-button svg {
+      width: 20px;
+      height: 20px;
+      fill: white;
+    }
+
   </style>
 </head>
 <body>
+  <!-- Audio -->
+  <audio id="musik" loop>
+    <source src="musik.mp3" type="audio/mpeg">
+    Browser Anda tidak mendukung audio.
+  </audio>
+
+  <!-- Tombol Toggle Play/Pause -->
+  <button class="play-button" onclick="toggleMusic()" id="tombolMusik">
+    <span id="ikonMusik">
+      <!-- Ikon Play -->
+      <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="16,8 56,32 16,56" />
+      </svg>
+    </span>
+    <span id="teksMusik">Putar Musik</span>
+  </button>
+
+  <script>
+    const musik = document.getElementById('musik');
+    const ikonMusik = document.getElementById('ikonMusik');
+    const teksMusik = document.getElementById('teksMusik');
+
+    function toggleMusic() {
+      if (musik.paused) {
+        musik.play();
+        // Ganti ikon ke Pause
+        ikonMusik.innerHTML = `
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <rect x="16" y="8" width="12" height="48" />
+            <rect x="36" y="8" width="12" height="48" />
+          </svg>`;
+        teksMusik.textContent = "Pause Musik";
+      } else {
+        musik.pause();
+        // Ganti ikon ke Play
+        ikonMusik.innerHTML = `
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="16,8 56,32 16,56" />
+          </svg>`;
+        teksMusik.textContent = "Putar Musik";
+      }
+    }
+  </script>
+
   <h1>🌹 Hj. Maisaroh & Sakim Effendy</h1>
   <div class="tree">
     <div class="level">
